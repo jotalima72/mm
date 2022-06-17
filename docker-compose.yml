@@ -1,0 +1,41 @@
+version: '3.5'
+
+services:
+
+  user:
+    image: user
+    build:
+      context: back-user-nest
+      dockerfile: ./back-user-nest.Dockerfile
+    ports:
+      - 3003:3003
+  estoque:
+    image: estoque
+    build:
+      context: mm-estoque
+      dockerfile: ./mm-estoque.Dockerfile
+    ports:
+      - 3005:3005
+  pagamento:
+    image: pagemento
+    build:
+      context: pagamento-api
+      dockerfile: ./pagamento-api.Dockerfile
+    ports:
+      - 8990:8990
+
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+      POSTGRES_DB: mm
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5435:5432"
+
+volumes:
+    postgres:
