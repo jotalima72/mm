@@ -45,7 +45,7 @@ constructor(
   }
 
   async findOne(id: string) {
-    return await this.userRepository.findOne(id);
+    return await this.userRepository.findOneOrFail(id);
   }
 
   async update(id: string, data: UpdateUserDto) {
