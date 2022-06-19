@@ -51,7 +51,7 @@ export class CarrinhoService {
     carrinhoSaved.produtos.forEach((produto) => {
       value += produto.quantidade * produto.produto.preco;
     });
-    const pay = await (await this.httpService.axiosRef.post('http://localhost:8990/pagamento/', {
+    const pay = await (await this.httpService.axiosRef.post('http://mm-pagamento:8990/pagamento/', {
       userid: user.id,
       creditCard: data.creditCard,
       cvv: data.cvv,

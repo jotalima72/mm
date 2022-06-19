@@ -3,27 +3,35 @@ version: '3.5'
 services:
 
   user:
+    container_name: mm-user
     image: user
     build:
       context: back-user-nest
-      dockerfile: ./back-user-nest.Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - 3003:3003
+    depends_on:
+      - postgres_container
   estoque:
+    container_name: mm-estoque
     image: estoque
     build:
       context: mm-estoque
-      dockerfile: ./mm-estoque.Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - 3005:3005
+    depends_on:
+      - postgres_container
   pagamento:
+    container_name: mm-pagamento
     image: pagemento
     build:
       context: pagamento-api
-      dockerfile: ./pagamento-api.Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - 8990:8990
-
+    depends_on:
+      - postgres_container
   postgres:
     container_name: postgres_container
     image: postgres

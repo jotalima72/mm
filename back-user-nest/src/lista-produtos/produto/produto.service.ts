@@ -9,14 +9,14 @@ export class ProdutoService {
     ) { }
 
     async create(produto: CreateProdutoDto) {
-        let link = 'http://localhost:3005/produto/';
+        let link = 'http://mm-estoque:3005/produto/';
         let request = await this.httpService.axiosRef.post(link, produto);
         const produtoSaved = request.data;
         return produtoSaved;
     }
 
     async findAll(nome?: string) {
-        let link = 'http://localhost:3005/produto/';
+        let link = 'http://mm-estoque:3005/produto/';
         if (nome) {
             link = link+'?nome='+nome;
         }

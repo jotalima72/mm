@@ -18,7 +18,7 @@ export class ListaProdutosService {
     // axios buscar produto;
     let produto: Produto;
     try{
-      let request = await this.httpService.axiosRef.get('http://localhost:3005/produto/'+data.produtoId);
+      let request = await this.httpService.axiosRef.get('http://mm-estoque:3005/produto/'+data.produtoId);
       produto = request.data;
     }
     catch(err){
@@ -29,7 +29,7 @@ export class ListaProdutosService {
       throw new BadRequestException('sem estoque');
     }
     else{
-      await this.httpService.axiosRef.patch('http://localhost:3005/produto/'+produto.id, {
+      await this.httpService.axiosRef.patch('http://mm-estoque:3005/produto/'+produto.id, {
         estoque: (produto.estoque - data.quantidade)
       })
     }
